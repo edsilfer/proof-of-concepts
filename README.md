@@ -7,6 +7,7 @@ https://en.wikipedia.org/wiki/Proof_of_concept
 # Index
 1. Android
     * [Map Struct Library for build mapper on Android](https://github.com/edsilfer/prove-of-concepts/tree/master/android-lib-map-struct);
+    * [Dagger 2 with Kotlin and Android Injector](https://github.com/edsilfer/proof-of-concepts/tree/master/android-dagger2-sample)
   
 2. WEB
     * [Spring Boot App in Kotlin](https://github.com/edsilfer/prove-of-concepts/tree/master/kotlin-spting-boot);
