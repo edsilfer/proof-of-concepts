@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">sample-dagger2</string>
+    <string name="str_button_label_ok">Ok</string>
+    <string name="str_button_label_cancel">Cancel</string>
+    <string name="str_fake_job_description">Performed fake job for 2 seconds</string>
+    <string name="str_button_label_tip_of_the_day">Tip of the day</string>
+    <string name="str_dialog_title_information">Information</string>
+    <string name="str_tip_of_the_day_dagger_works_if_set_correctly">If correctly configured, Dagger2 with ActivityInjection works!</string>
+    <string name="str_secondary_view_disclaimer">This is a secondary view</string>
+    <string name="str_button_launch_secondary_view_label">Click to launch secondary view</string>
+</resources>
