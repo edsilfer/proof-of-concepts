@@ -1,4 +1,4 @@
-package br.com.edsilfer.sample_dagger2.secondary_view.presentation.view
+package br.com.edsilfer.sample_dagger2.module_beta.presentation.view
 
 import android.content.Context
 import android.content.Intent
@@ -6,21 +6,23 @@ import android.os.Bundle
 import br.com.edsilfer.sample_dagger2.R
 import br.com.edsilfer.sample_dagger2.core.components.BaseActivity
 import br.com.edsilfer.sample_dagger2.core.components.BasePresenter
-import br.com.edsilfer.sample_dagger2.secondary_view.presentation.presenter.SecondaryPresenter
+import br.com.edsilfer.sample_dagger2.module_beta.presentation.presenter.BetaPresenter
 import dagger.android.AndroidInjection
-import kotlinx.android.synthetic.main.secondary_view.*
+import kotlinx.android.synthetic.main.beta_view.*
 import javax.inject.Inject
 
 /**
  * Created by edgar on 02/08/17.
  */
-class SecondaryViewImpl : BaseActivity(), SecondaryView {
+class BetaViewImpl : BaseActivity(), BetaView {
 
     @Inject
-    lateinit var presenter : SecondaryPresenter
+    lateinit var presenter : BetaPresenter
+
+    private val tipOfTheDay by lazy { button_tipOfTheDay }
 
     companion object {
-        fun getIntent (context : Context) : Intent = Intent (context, SecondaryViewImpl::class.java)
+        fun getIntent (context : Context) : Intent = Intent (context, BetaViewImpl::class.java)
     }
 
     override fun getPresenter(): BasePresenter = presenter
@@ -28,9 +30,9 @@ class SecondaryViewImpl : BaseActivity(), SecondaryView {
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.secondary_view)
+        setContentView(R.layout.beta_view)
 
-        button_tipOfTheDay.setOnClickListener { presenter.onTipOfTheDayClick() }
+        tipOfTheDay.setOnClickListener { presenter.onTipOfTheDayClick() }
     }
 
 }

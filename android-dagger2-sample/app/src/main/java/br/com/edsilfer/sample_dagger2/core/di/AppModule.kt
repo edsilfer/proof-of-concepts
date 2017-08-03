@@ -2,8 +2,8 @@ package br.com.edsilfer.sample_dagger2.core.di
 
 import android.app.Application
 import android.content.Context
-import br.com.edsilfer.sample_dagger2.core.components.FakeWorker
-import br.com.edsilfer.sample_dagger2.core.components.FakeWorkerImpl
+import br.com.edsilfer.sample_dagger2.core.domain.FakeWorker
+import br.com.edsilfer.sample_dagger2.core.domain.FakeWorkerImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

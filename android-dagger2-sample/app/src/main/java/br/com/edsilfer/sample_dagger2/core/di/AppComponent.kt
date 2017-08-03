@@ -2,7 +2,7 @@ package br.com.edsilfer.sample_dagger2.core.di
 
 import android.app.Application
 import br.com.edsilfer.sample_dagger2.core.App
-import br.com.edsilfer.sample_dagger2.core.components.FakeWorker
+import br.com.edsilfer.sample_dagger2.core.domain.FakeWorker
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton

@@ -1,4 +1,4 @@
-package br.com.edsilfer.sample_dagger2.core.components
+package br.com.edsilfer.sample_dagger2.core.domain
 
 import io.reactivex.Completable
 
