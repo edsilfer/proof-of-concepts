@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+ext {
+    LIBRARY_VERSION_ANDROID_SUPPORT = '26.0.0'
+    LIBRARY_VERSION_DAGGER_2 = '2.11'
+    LIBRARY_VERSION_TIMBER = '4.5.1'
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
+
+    defaultConfig {
+        applicationId "br.com.edsilfer.android_dagger_android"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // SUPPORT DEPENDENCIES
+    implementation "com.android.support:appcompat-v7:$LIBRARY_VERSION_ANDROID_SUPPORT"
+    implementation "com.android.support:cardview-v7:$LIBRARY_VERSION_ANDROID_SUPPORT"
+    implementation "com.android.support:recyclerview-v7:$LIBRARY_VERSION_ANDROID_SUPPORT"
+    implementation "com.android.support:design:$LIBRARY_VERSION_ANDROID_SUPPORT"
+
+    // DAGGER 2
+    implementation "com.google.dagger:dagger:$LIBRARY_VERSION_DAGGER_2"
+    implementation "com.google.dagger:dagger-android-support:$LIBRARY_VERSION_DAGGER_2"
+    kapt "com.google.dagger:dagger-compiler:$LIBRARY_VERSION_DAGGER_2"
+    kapt "com.google.dagger:dagger-android-processor:$LIBRARY_VERSION_DAGGER_2"
+
+    // OTHER
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "com.jakewharton.timber:timber:$LIBRARY_VERSION_TIMBER"
+    implementation 'com.github.edsilfer:android-toolkit:master-SNAPSHOT'
+
+    // TEST DEPENDENCIES
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+}
+
+kapt {
+    generateStubs = true
+}

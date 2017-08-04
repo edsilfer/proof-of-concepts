@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">dagger-android</string>
+    <string name="str_welcome_disclaimer">This is a sample application that uses Dagger 2 \'dagger.android\' features, removing boilerplate code and allowing, among others, Activity injection</string>
+</resources>
