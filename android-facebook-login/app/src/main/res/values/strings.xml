@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">android-facebook-login</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="str_credentials_facebook_app_id">259818287839178</string>
+    <string name="str_credentials_facebook_login_protocol_scheme">fb259818287839178</string>
+    <string name="str_disclaimer_login_view">Sample Login With Facebook</string>
+    <string name="str_homepage_pending_posts_disclaimer">270 pending posts</string>
+    <string name="str_button_add_bio">DESCRIBE WHO YOU ARE</string>
+    <string name="str_commons_token_edit">EDIT</string>
+    <string name="str_menu_activity_log">Activity Log</string>
+    <string name="str_menu_update_info">Update Info</string>
+    <string name="str_menu_action_change_profile_picture">Change Profile Picture</string>
+    <string name="str_menu_action_change_cover_photo">Change Cover Photo</string>
+    <string name="str_menu_action_view_privacy_shortcuts">View Privacy Shortcuts</string>
+    <string name="str_menu_aciton_copy_link_to_profile">Copy Link To Profile</string>
+</resources>

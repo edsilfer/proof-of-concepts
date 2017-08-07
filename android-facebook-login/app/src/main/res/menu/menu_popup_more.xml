@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.edsilfer.android_facebook_login.login.presentation.view.LoginViewImpl">
+    <item
+        android:id="@+id/action_change_profile_picture"
+        android:icon="@drawable/ic_menu_change_profile_picture"
+        android:orderInCategory="100"
+        android:title="@string/str_menu_action_change_profile_picture"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_change_cover_photo"
+        android:icon="@drawable/ic_menu_change_cover_photo"
+        android:orderInCategory="101"
+        android:title="@string/str_menu_action_change_cover_photo"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_view_privacy_shortcuts"
+        android:icon="@drawable/ic_menu_privacy_shortcut"
+        android:orderInCategory="102"
+        android:title="@string/str_menu_action_view_privacy_shortcuts"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_copy_link_to_profile"
+        android:icon="@drawable/ic_menu_copy_link_to_profile"
+        android:orderInCategory="103"
+        android:title="@string/str_menu_aciton_copy_link_to_profile"
+        app:showAsAction="always" />
+</menu>

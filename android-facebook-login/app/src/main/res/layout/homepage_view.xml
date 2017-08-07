@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/relativeLayout_coverContainer"
+            layout="@layout/homepage_cover_picture"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <include
+            android:id="@+id/cardView_profileContainer"
+            layout="@layout/homepage_profile_picture"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout_coverContainer"
+            app:layout_constraintVertical_bias="0.205" />
+
+        <TextView
+            android:id="@+id/textView_username"
+            android:layout_width="232dp"
+            android:layout_height="87dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView_profileContainer"
+            tools:text="Edgar da Silva Fernandes" />
+
+        <TextView
+            android:id="@+id/textView_pendingPosts"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/str_homepage_pending_posts_disclaimer"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_username" />
+
+        <br.com.edsilfer.android_facebook_login.homepage.presentation.view.HomepageButtonPanelViewImpl
+            android:id="@+id/homepageButtonPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_pendingPosts" />
+
+        <include
+            android:id="@+id/button_addBio"
+            layout="@layout/homepage_button_add_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homepageButtonPanel" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/listView_education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_addBio" />
+
+        <LinearLayout
+            android:id="@+id/view_light"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#44000000"
+            android:clickable="true"
+            android:elevation="4dp"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:visibility="gone" />
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
