@@ -26,7 +26,6 @@ android {
 }
 
 dependencies {
-
     // TEST
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -42,5 +41,4 @@ dependencies {
         exclude group: 'com.android.tools.lint'
         exclude group: 'org.projectlombok'
     }
-
 }

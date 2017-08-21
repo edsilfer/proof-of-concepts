@@ -39,9 +39,6 @@ jar {
 
 defaultTasks 'assemble'
 
-/**
- * Copies the jar file containing your lint modules into the .android/lint directory in your home folder.
- * */
 task copyLintJar(type: Copy) {
     description = 'Copies the lint jar file into the {user.home}/.android/lint folder.'
     from('build/libs/')
