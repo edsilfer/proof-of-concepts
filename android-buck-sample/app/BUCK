@@ -1,0 +1,300 @@
+android_resource(
+	name = 'res_debug',
+	package = 'br.com.edsilfer.buck_sample',
+	res = res_glob([
+		('src/main/res', '**'),
+	]),
+	resource_union = True,
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_build_config(
+	name = 'build_config_debug',
+	package = 'br.com.edsilfer.buck_sample',
+	values = [
+		'String APPLICATION_ID = "br.com.edsilfer.buck_sample"',
+		'String BUILD_TYPE = "debug"',
+		'String FLAVOR = ""',
+		'int VERSION_CODE = 1',
+		'String VERSION_NAME = "1.0"',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_library(
+	name = 'src_debug',
+	srcs = glob([
+		'src/main/java/**/*.java',
+	]),
+	source = '7',
+	target = '7',
+	manifest = '//.okbuck/gen/app/debug:AndroidManifest.xml',
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-solver-1.0.2.jar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-annotations-25.0.0.jar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+		':build_config_debug',
+		':res_debug',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+genrule(
+	name = 'lint_debug',
+	srcs = [
+		'src/main/java',
+		'src/main/res',
+	],
+	out = 'lint_debug_out',
+	bash = '' \
+	'mkdir -p $OUT; ' \
+	'RUN_IN=`dirname $(location //.okbuck/gen/app/debug:AndroidManifest.xml)`; ' \
+	'CP_FILE=`sed "s/@//" <<< $(@classpath :src_debug)`; ' \
+	'sed -i.bak -e "s|/Users/edgar/Edgar/Workspace/prove-of-concepts/android-buck-sample/||g" -e "s|\'||g" $CP_FILE; ' \
+	'exec java ' \
+	'-Djava.awt.headless=true ' \
+	'-Dcom.android.tools.lint.workdir=/Users/edgar/Edgar/Workspace/prove-of-concepts/android-buck-sample ' \
+	'-Xmx1024m ' \
+	'-classpath $(location //.okbuck/cache/lint:okbuck_lint) ' \
+	'com.android.tools.lint.Main ' \
+	'--classpath $(location :src_debug) ' \
+	'--libraries `cat $CP_FILE` ' \
+	'--fullpath ' \
+	'--xml "$OUT/lint-results.xml" ' \
+	'--html "$OUT/lint-results.html" ' \
+	'--sources src/main/java ' \
+	'--resources src/main/res ' \
+	'$RUN_IN ' \
+	'',
+)
+
+
+android_manifest(
+	name = 'manifest_debug',
+	skeleton = '//.okbuck/gen/app/debug:AndroidManifest.xml',
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_binary(
+	name = 'bin_debug',
+	manifest = ':manifest_debug',
+	keystore = '//.okbuck/gen/app/debug:app.keystore',
+	manifest_entries = {
+		'placeholders': {
+			'applicationId': 'br.com.edsilfer.buck_sample',
+		},
+	},
+	deps = [
+		':res_debug',
+		':src_debug',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_resource(
+	name = 'res_release',
+	package = 'br.com.edsilfer.buck_sample',
+	res = res_glob([
+		('src/main/res', '**'),
+	]),
+	resource_union = True,
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_build_config(
+	name = 'build_config_release',
+	package = 'br.com.edsilfer.buck_sample',
+	values = [
+		'String APPLICATION_ID = "br.com.edsilfer.buck_sample"',
+		'String BUILD_TYPE = "release"',
+		'String FLAVOR = ""',
+		'int VERSION_CODE = 1',
+		'String VERSION_NAME = "1.0"',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_library(
+	name = 'src_release',
+	srcs = glob([
+		'src/main/java/**/*.java',
+	]),
+	source = '7',
+	target = '7',
+	manifest = '//.okbuck/gen/app/release:AndroidManifest.xml',
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-solver-1.0.2.jar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-annotations-25.0.0.jar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+		':build_config_release',
+		':res_release',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+genrule(
+	name = 'lint_release',
+	srcs = [
+		'src/main/java',
+		'src/main/res',
+	],
+	out = 'lint_release_out',
+	bash = '' \
+	'mkdir -p $OUT; ' \
+	'RUN_IN=`dirname $(location //.okbuck/gen/app/release:AndroidManifest.xml)`; ' \
+	'CP_FILE=`sed "s/@//" <<< $(@classpath :src_release)`; ' \
+	'sed -i.bak -e "s|/Users/edgar/Edgar/Workspace/prove-of-concepts/android-buck-sample/||g" -e "s|\'||g" $CP_FILE; ' \
+	'exec java ' \
+	'-Djava.awt.headless=true ' \
+	'-Dcom.android.tools.lint.workdir=/Users/edgar/Edgar/Workspace/prove-of-concepts/android-buck-sample ' \
+	'-Xmx1024m ' \
+	'-classpath $(location //.okbuck/cache/lint:okbuck_lint) ' \
+	'com.android.tools.lint.Main ' \
+	'--classpath $(location :src_release) ' \
+	'--libraries `cat $CP_FILE` ' \
+	'--fullpath ' \
+	'--xml "$OUT/lint-results.xml" ' \
+	'--html "$OUT/lint-results.html" ' \
+	'--sources src/main/java ' \
+	'--resources src/main/res ' \
+	'$RUN_IN ' \
+	'',
+)
+
+
+android_manifest(
+	name = 'manifest_release',
+	skeleton = '//.okbuck/gen/app/release:AndroidManifest.xml',
+	deps = [
+		'//.okbuck/cache:com.android.support.animated-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.appcompat-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.constraint.constraint-layout-1.0.2.aar',
+		'//.okbuck/cache:com.android.support.design-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.recyclerview-v7-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-ui-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-core-utils-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-fragment-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-media-compat-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-v4-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.support-vector-drawable-25.0.0.aar',
+		'//.okbuck/cache:com.android.support.transition-25.0.0.aar',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+
+android_binary(
+	name = 'bin_release',
+	manifest = ':manifest_release',
+	keystore = '//.okbuck/gen/app/release:app.keystore',
+	manifest_entries = {
+		'placeholders': {
+			'applicationId': 'br.com.edsilfer.buck_sample',
+		},
+	},
+	deps = [
+		':res_release',
+		':src_release',
+	],
+	visibility = [
+		'PUBLIC',
+	],
+)
+
+

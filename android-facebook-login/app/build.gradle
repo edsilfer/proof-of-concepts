@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 ext {
-    LIBRARY_VERSION_ANDROID_SUPPORT = '26.0.0'
+    LIBRARY_VERSION_ANDROID_SUPPORT = '26.0.1'
     LIBRARY_VERSION_CIRCULAR_IMAGE_VIEW = '3.0.2'
     LIBRARY_VERSION_CONSTRAINT_LAYOUT = '1.1.0-beta1'
     LIBRARY_VERSION_DAGGER_2 = '2.11'
@@ -18,7 +18,7 @@ ext {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "br.com.edsilfer.android_facebook_login"
@@ -38,6 +38,10 @@ android {
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
@@ -62,8 +66,8 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$LIBRARY_VERSION_DAGGER_2"
 
     // KOTLIN
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$version_kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$version_kotlin"
 
     // OTHER
     implementation "com.jakewharton.timber:timber:$LIBRARY_VERSION_TIMBER"
