@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+ext {
+    VERSION_COMPAT = '26.0.1'
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion VERSION_COMPAT
+
+    defaultConfig {
+        applicationId "br.com.edsilfer.android_custom_lint"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    // TEST
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    // COMPAT
+    compile "com.android.support:appcompat-v7:$VERSION_COMPAT"
+
+    // LOCAL
+    compile(project(path: ':lint-rules')) {
+        exclude group: 'com.android.tools.lint'
+        exclude group: 'org.projectlombok'
+    }
+
+}
