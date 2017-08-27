@@ -13,5 +13,6 @@
     <string name="str_menu_action_change_profile_picture">Change Profile Picture</string>
     <string name="str_menu_action_change_cover_photo">Change Cover Photo</string>
     <string name="str_menu_action_view_privacy_shortcuts">View Privacy Shortcuts</string>
-    <string name="str_menu_aciton_copy_link_to_profile">Copy Link To Profile</string>
+    <string name="str_menu_action_copy_link_to_profile">Copy Link To Profile</string>
+    <string name="str_menu_action_logout">Logout</string>
 </resources>

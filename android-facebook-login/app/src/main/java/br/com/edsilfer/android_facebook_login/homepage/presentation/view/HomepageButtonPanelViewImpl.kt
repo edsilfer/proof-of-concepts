@@ -56,7 +56,7 @@ class HomepageButtonPanelViewImpl @JvmOverloads constructor(
         popup.setOnDismissListener { PopupObservable.publish(false) }
         val inflater = popup.menuInflater
         inflater.inflate(R.menu.menu_popup_more, popup.menu)
-        popup.setOnMenuItemClickListener { item -> true }
+        popup.setOnMenuItemClickListener { presenter.onPopupItemClick(it) }
         popup.show()
     }
 

@@ -12,7 +12,7 @@ import timber.log.Timber
  */
 class LoginPresenterImpl(
         val view: LoginView,
-        val router: Router
+        private val router: Router
 ) : LoginPresenter {
 
     override fun attach() {

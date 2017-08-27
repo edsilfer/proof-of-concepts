@@ -1,8 +1,6 @@
 buildscript {
-    ext.version_kotlin = '1.1.3-2'
+    ext.version_kotlin = '1.1.4-2'
     ext.version_android_gradle = '3.0.0-beta2'
-    ext.version_ok_buck = '0.26.2'
-    ext.version_proguard_version = '5.3.3'
 
     repositories {
         google()
@@ -12,8 +10,6 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$version_android_gradle"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$version_kotlin"
-        classpath "com.uber:okbuck:$version_ok_buck"
-        classpath "net.sf.proguard:proguard-gradle:$version_proguard_version"
     }
 }
 
@@ -23,8 +19,6 @@ allprojects {
         jcenter()
         maven { url "https://jitpack.io" }
     }
-
-    apply plugin: 'com.uber.okbuck'
 }
 
 task clean(type: Delete) {

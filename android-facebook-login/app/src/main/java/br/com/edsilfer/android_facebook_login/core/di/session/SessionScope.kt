@@ -1,4 +1,4 @@
-package br.com.edsilfer.android_facebook_login.core.di.scopes
+package br.com.edsilfer.android_facebook_login.core.di.session
 
 import javax.inject.Scope
 
@@ -7,4 +7,4 @@ import javax.inject.Scope
  */
 @Scope
 @Retention(AnnotationRetention.RUNTIME)
-annotation class ActivityScope
+annotation class SessionScope

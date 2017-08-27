@@ -7,4 +7,6 @@ interface Router {
 
     fun launchHomepageView()
 
+    fun logout()
+
 }

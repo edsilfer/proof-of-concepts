@@ -1,13 +1,14 @@
 package br.com.edsilfer.android_facebook_login.login.presentation.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import br.com.edsilfer.android_facebook_login.R
-import br.com.edsilfer.android_facebook_login.facebook.data.datasource.rest.json.GraphAPISchema
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenter
+import br.com.edsilfer.reactive_facebook.data.datasource.rest.json.GraphAPISchema
 import br.com.edsilfer.tookit.core.components.BaseActivity
 import br.com.edsilfer.tookit.core.components.BasePresenter
 import com.facebook.CallbackManager
@@ -17,12 +18,14 @@ import javax.inject.Inject
 
 class LoginViewImpl : BaseActivity(), LoginView {
 
+    companion object {
+        fun getIntent(context: Context): Intent = Intent(context, LoginViewImpl::class.java)
+    }
+
     @Inject
     lateinit var presenter: LoginPresenter
     @Inject
     lateinit var callbackManager: CallbackManager
-
-    private val buttonFacebookLogin by lazy { button_facebookLogin }
 
     override fun getPresenter(): BasePresenter = presenter
 
@@ -32,8 +35,8 @@ class LoginViewImpl : BaseActivity(), LoginView {
         setContentView(R.layout.login_view)
         setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
 
-        buttonFacebookLogin.setReadPermissions(GraphAPISchema.ARG_USER_PERMISSIONS)
-        buttonFacebookLogin.registerCallback(callbackManager, presenter)
+        button_facebookLogin.setReadPermissions(GraphAPISchema.ARG_USER_PERMISSIONS)
+        button_facebookLogin.registerCallback(callbackManager, presenter)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -27,6 +27,14 @@
         android:id="@+id/action_copy_link_to_profile"
         android:icon="@drawable/ic_menu_copy_link_to_profile"
         android:orderInCategory="103"
-        android:title="@string/str_menu_aciton_copy_link_to_profile"
+        android:title="@string/str_menu_action_copy_link_to_profile"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_logout"
+        android:icon="@drawable/ic_menu_logout"
+        android:orderInCategory="104"
+        android:title="@string/str_menu_action_logout"
+        app:showAsAction="always" />
+
 </menu>

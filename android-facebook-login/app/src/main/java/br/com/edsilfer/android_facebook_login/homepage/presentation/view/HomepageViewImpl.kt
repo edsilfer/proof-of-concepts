@@ -9,9 +9,9 @@ import android.support.annotation.RequiresApi
 import android.view.WindowManager
 import android.widget.LinearLayout
 import br.com.edsilfer.android_facebook_login.R
-import br.com.edsilfer.android_facebook_login.facebook.domain.entity.User
 import br.com.edsilfer.android_facebook_login.homepage.presentation.model.EducationViewModel
 import br.com.edsilfer.android_facebook_login.homepage.presentation.presenter.HomepagePresenter
+import br.com.edsilfer.reactive_facebook.domain.entity.User
 import br.com.edsilfer.tookit.core.components.BaseActivity
 import br.com.edsilfer.tookit.core.components.BasePresenter
 import com.squareup.picasso.Picasso
@@ -34,6 +34,8 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
     }
 
     @Inject
+    lateinit var user: User
+    @Inject
     lateinit var picasso: Picasso
     @Inject
     lateinit var presenter: HomepagePresenter
@@ -52,6 +54,7 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.homepage_view)
         setStatusBarTransparent()
+        loadUser()
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -59,7 +62,7 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
         window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
     }
 
-    override fun loadUser(user: User) {
+    private fun loadUser() {
         picasso.load(user.coverPicture).centerCrop().fit().into(cover)
         picasso.load(user.profilePicture).centerCrop().fit().into(profile)
         username.text = user.name

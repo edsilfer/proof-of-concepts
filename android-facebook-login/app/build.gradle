@@ -72,6 +72,7 @@ dependencies {
     // OTHER
     implementation "com.jakewharton.timber:timber:$LIBRARY_VERSION_TIMBER"
     implementation 'com.github.edsilfer:android-toolkit:master-SNAPSHOT'
+    implementation 'com.github.edsilfer:android-reactive-facebook:master-SNAPSHOT'
     implementation "com.google.code.gson:gson:$LIBRARY_VERSION_GSON"
     implementation "com.squareup.picasso:picasso:$LIBRARY_VERSION_PICASSO"
     implementation "com.mikhaellopez:circularimageview:$LIBRARY_VERSION_CIRCULAR_IMAGE_VIEW"
