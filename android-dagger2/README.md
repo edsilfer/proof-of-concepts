@@ -1,6 +1,4 @@
 # Android Dagger
-
-
 ---
 ## Index
 * [Introduction](#introduction)
@@ -12,7 +10,6 @@
         * [How to create a custom scope?](#custom_scope)
 * [Glossary](#glossary)
 * [References & Useful Links](#references)
-
 ---
 
 <a name="introduction"></a>

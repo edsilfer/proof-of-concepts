@@ -1,12 +1,10 @@
 # Sample Configuration: Dagger 2 + Kotlin + _dagger.android_
-
 ---
 # Index
  1. [Requeride Dependencies](#dependencies)
  2. [Prepare the Application](#application)
  3. [ActivityBuilder](#activitybuilder)
  4. [License](#license)
-
 ---
 Dagger 2.10 introduced dagger.android, which is a framework that simplifies dependency injection with Dagger 2 in Android, getting rid of many boilerplate code and allowing Activity provision.
 

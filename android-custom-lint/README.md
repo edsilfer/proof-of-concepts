@@ -1,19 +1,20 @@
 # Android Custom Lint Rules
-
+---
 # Index
 1. [Introduction](#intro)
     - [Basic Concepts](#concepts)
-2. [Tutorial](#tutorial)
+2. [Usage](#usage)
     - [Create](#tuto-create)
     - [Testing Detector and Checkers](#tuto-test)
         - [Approach 01: LintDetectorTest](#tuto-test-app01)
         - [Approach 02: Lint JUnit Rule](#tuto-test-app02)
 3. [Known Issues](#issues)
 4. [Glossary](#glossary)
-5. [References & Useful Links](#references)
+5. [References & Useful Links](#links)
 6. [License](#license)
+---
 
-<a ref="intro"></a>
+<a name="intro"></a>
 
 ## Introduction
 There are many reason why one should consider writing Custom Lint Rule for his project, two of them worth mentioning:
@@ -22,7 +23,7 @@ There are many reason why one should consider writing Custom Lint Rule for his p
 
 For further information on these topics, read the articles from REF002 and REF003;
 
-<a ref="concepts"></a>
+<a name="concepts"></a>
 
 ### Basic Concepts
 Before jumping into the tutorial, there are a few concepts to be understood:
@@ -31,11 +32,11 @@ Before jumping into the tutorial, there are a few concepts to be understood:
  - **Checker**: verifies if a given input contains issues - raising them once they're found;
  - **Registry**: component that registers all issues for which Lint should be looking for;
 
-<a ref="tutorial"></a>
+<a name="usage"></a>
 
-## Tutorial
+## Usage
 
-<a ref="tuto-create"></a>
+<a name="tuto-create"></a>
 
 ### Create
 1. Create a new Android Project;
@@ -52,12 +53,12 @@ Before jumping into the tutorial, there are a few concepts to be understood:
 6. Copy the generated .jar file from ```build/lib``` to ```~/.android/lint``` - _if you added a task on ```build.gradle``` that does this you can skip this step_;
 7. Restart the computer - once created and moved into ```~/.android/lint```, the Custom Rules should be read by Lint next time the program starts. In order to have the alert boxes inside Android Studio, it is enough to _invalidate caches and restart_ the IDE, however, to have your custom rules caught on Lint Report when ```./gradlew check```, it might be necessary to restart your computer;
 
-<a ref="tuto-test"></a>
+<a name="tuto-test"></a>
 
 ### Testing Detectors and Checkers
 Testing Custom Rules is not an easy task to do - mainly due the lack of documentation for official APIs. This section will present two approaches for dealing with this. The main goal of this project is to create custom rules that will be run against real files, therefore, test files will be necessary for testing them. They can be places in ```src/test/resources``` folder from your Lint Java Library Module;
 
-<a ref="tuto-test-app01"></a>
+<a name="tuto-test-app01"></a>
 
 #### Approach 01: LintDetectorTest
 1. Make sure you've added all test dependencies - checkout [sample project's](https://github.com/edsilfer/proof-of-concepts/blob/master/android-custom-lint/lint-rules/build.gradle) ```build.gradle```;
@@ -68,16 +69,16 @@ Testing Custom Rules is not an easy task to do - mainly due the lack of document
 4. Implement ```getDetector()``` method returning an instance of the Detector to be tested;
 5. Use ```lintFiles("test file path taking resources dir as root")``` to perform the check of the Custom Rules and use its result object to assert the tests;
 
-_Note that ```LintDetectorTest.java``` derives from ```TestCase.java```, therefore, you're limited to JUnit 3._
+_Note that ```LintDetectorTest.java``` derives from ```TestCase.java```, thenameore, you're limited to JUnit 3._
 
-<a ref="tuto-test-app02"></a>
+<a name="tuto-test-app02"></a>
 
 #### Approach 02: Lint JUnit Rule
-You might have noticed that Approach 01 might be a little overcomplicated, despite the fact that you're limited to JUnit 3 features. Because of that [GitHub user a11n](https://github.com/a11n) created a [Lint JUnit Rule](https://github.com/a11n/lint-junit-rule) that allows the test of Custom Lint Rules in a easier way that counts with JUnit 4 and up features. Please, refer to his project [README.md](https://github.com/a11n/lint-junit-rule/blob/master/README.md) for details about how to create tests using this apprach.
+You might have noticed that Approach 01 might be a little overcomplicated, despite the fact that you're limited to JUnit 3 features. Because of that [GitHub user a11n](https://github.com/a11n) created a [Lint JUnit Rule](https://github.com/a11n/lint-junit-rule) that allows the test of Custom Lint Rules in a easier way that counts with JUnit 4 and up features. Please, refer to his project [README.md](https://github.com/a11n/lint-junit-rule/blob/master/README.md) for details about how to create tests using this approach.
 
 _Currently, [Lint JUnit Rule](https://github.com/a11n/lint-junit-rule) do not correct the root dir for test files and you might no be able to see the tests passing from the IDE - however it works when test are run from command line. An [issue](https://github.com/a11n/lint-junit-rule/issues/17) and [PR](https://github.com/a11n/lint-junit-rule/pull/16) were created in order to fix this bug._
 
-<a ref="issues"></a>
+<a name="issues"></a>
 
 ## Known Issues
 | # 	| Description                                                                                                                	| Error Message            	| How can I reproduce?                                                                                                           	| Fix                                                                                                                                                                                                                                                                                                                                                                                       	|
@@ -87,21 +88,21 @@ _Currently, [Lint JUnit Rule](https://github.com/a11n/lint-junit-rule) do not co
 | 3 	| Unable to locate test file from test resource folder                                                                       	| File XPTO was not found. 	| Place a test file (XML or JAVA) into ```src/test/resources``` and attempt to use it from a JUnit like in ```lintFiles(file)``` 	| If using Test Approach 01, make sure you test file descents from [```EnhancedLintDetectorClass.class```](https://github.com/edsilfer/proof-of-concepts/blob/master/android-custom-lint/lint-rules/src/test/java/br/com/edsilfer/lint_rules/util/EnhancedLintDetectorClass.java). If using Test Approach 02, check out [pull request #16](https://github.com/a11n/lint-junit-rule/pull/16) 	|
 
 
-<a ref="issues"></a>
+<a name="issues"></a>
 
 ## Glossary
  > - **[Lint](https://developer.android.com/studio/write/lint.html)**: _lint was the name originally given to a particular program that flagged some suspicious and non-portable constructs (likely to be bugs) in C language source code. The term is now applied generically to tools that flag suspicious usage in software written in any computer language;_
 
  - **SRP**: Single Responsibility Principle, [S.O.L.I.D.](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design));
 
-<a ref="references"></a>
+<a name="links"></a>
 
-## References and Useful Links
+## References & Useful Links
  - **REF001**: [Source code of Android's default detectors;](https://android.googlesource.com/platform/tools/base/+/master/lint/libs/lint-checks/src/main/java/com/android/tools/lint/checks);
  - **REF002**: [Building Custom Lint Checks in Android (2016), by Adam Compton](https://www.bignerdranch.com/blog/building-custom-lint-checks-in-android/);
  - **REF003**: [Writing custom lint rules and integrating them with Android Studio inspections (2016), by Adam Buick](https://android.jlelse.eu/writing-custom-lint-rules-and-integrating-them-with-android-studio-inspections-or-carefulnow-c54d72f00d30)
 
-<a ref="license"></a>
+<a name="license"></a>
 
 ## License
  Copyright 2017 Edgar da Silva Fernandes
