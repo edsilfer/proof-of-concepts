@@ -1,16 +1,14 @@
 package br.com.edsilfer.android_facebook_login.login.presentation.view
 
+import android.arch.lifecycle.LifecycleActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import br.com.edsilfer.android_facebook_login.R
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenter
 import br.com.edsilfer.reactive_facebook.data.datasource.rest.json.GraphAPISchema
-import br.com.edsilfer.tookit.core.components.BaseActivity
-import br.com.edsilfer.tookit.core.components.BasePresenter
 import br.com.edsilfer.tookit.presentation.view.contract.LoadingScreen
 import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
 import com.facebook.CallbackManager
@@ -18,7 +16,7 @@ import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.login_view.*
 import javax.inject.Inject
 
-class LoginViewImpl : BaseActivity(), LoadingView {
+class LoginViewImpl : LifecycleActivity(), LoadingView {
 
     companion object {
         fun getIntent(context: Context): Intent = Intent(context, LoginViewImpl::class.java)
@@ -31,13 +29,10 @@ class LoginViewImpl : BaseActivity(), LoadingView {
     @Inject
     lateinit var callbackManager: CallbackManager
 
-    override fun getPresenter(): BasePresenter = presenter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_view)
-        setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
         prepareFacebookConfiguration()
     }
 

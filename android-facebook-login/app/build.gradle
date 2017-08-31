@@ -14,6 +14,8 @@ ext {
     LIBRARY_VERSION_RXJAVA = '2.1.1'
     LIBRARY_VERSION_RXJAVA_ANDROID = '2.0.1'
     LIBRARY_VERSION_TIMBER = '4.5.1'
+
+    LIBRARY_VERSION_ARCHITECTURE_LIFECYCLE_DEPENDENCIES = '1.0.0-alpha9'
 }
 
 android {
@@ -59,6 +61,11 @@ dependencies {
     implementation "com.android.support:design:$LIBRARY_VERSION_ANDROID_SUPPORT"
     implementation "com.android.support.constraint:constraint-layout:$LIBRARY_VERSION_CONSTRAINT_LAYOUT"
 
+    // ANDROID ARCHITECTURE
+    implementation "android.arch.lifecycle:runtime:$LIBRARY_VERSION_ARCHITECTURE_LIFECYCLE_DEPENDENCIES"
+    implementation "android.arch.lifecycle:extensions:$LIBRARY_VERSION_ARCHITECTURE_LIFECYCLE_DEPENDENCIES"
+    kapt "android.arch.lifecycle:compiler:$LIBRARY_VERSION_ARCHITECTURE_LIFECYCLE_DEPENDENCIES"
+
     // RxJAVA
     implementation "io.reactivex.rxjava2:rxjava:$LIBRARY_VERSION_RXJAVA"
     implementation "io.reactivex.rxjava2:rxandroid:$LIBRARY_VERSION_RXJAVA_ANDROID"
@@ -80,16 +87,15 @@ dependencies {
     implementation "com.mikhaellopez:circularimageview:$LIBRARY_VERSION_CIRCULAR_IMAGE_VIEW"
 
     // LOCAL
-    implementation ('com.github.edsilfer:android-toolkit:master-SNAPSHOT') {
+    implementation('com.github.edsilfer:android-toolkit:master-SNAPSHOT') {
         transitive = true
     }
-    implementation ('com.github.edsilfer:android-reactive-facebook:master-SNAPSHOT') {
+    implementation('com.github.edsilfer:android-reactive-facebook:master-SNAPSHOT') {
         transitive true
     }
 
     // FACEBOOK
     implementation("com.facebook.android:facebook-android-sdk:$LIBRARY_VERSION_FACEBOOK_SDK")
-
 
     // TEST DEPENDENCIES
     testImplementation 'junit:junit:4.12'

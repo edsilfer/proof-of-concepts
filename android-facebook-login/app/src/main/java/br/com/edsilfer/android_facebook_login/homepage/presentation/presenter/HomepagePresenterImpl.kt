@@ -1,33 +1,33 @@
 package br.com.edsilfer.android_facebook_login.homepage.presentation.presenter
 
+import android.arch.lifecycle.Lifecycle
 import br.com.edsilfer.android_facebook_login.homepage.domain.observables.PopupObservable
 import br.com.edsilfer.android_facebook_login.homepage.presentation.view.HomepageView
-import io.reactivex.disposables.CompositeDisposable
+import br.com.edsilfer.tookit.core.components.BasePresenter
 
 /**
  * Created by edgar on 04/08/17.
  */
-class HomepagePresenterImpl(val view: HomepageView) : HomepagePresenter {
+class HomepagePresenterImpl(
+        val view: HomepageView,
+        lifecycle: Lifecycle
+) : BasePresenter(lifecycle), HomepagePresenter {
 
-    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
-
-    override fun attach() {
-        if (compositeDisposable.isDisposed) compositeDisposable = CompositeDisposable()
+    override fun onStart() {
+        super.onStart()
         registerForPopUpLifecycleNotifications()
     }
 
     private fun registerForPopUpLifecycleNotifications() {
-        compositeDisposable.add(
+        addDisposable(
                 PopupObservable
                         .registerInto()
                         .subscribe(
-                                { isPopupVisible -> if (isPopupVisible) view.lightUp() else view.lightDown() }
+                                { isPopupVisible ->
+                                    if (isPopupVisible) view.lightUp() else view.lightDown()
+                                }
                         )
         )
-    }
-
-    override fun detach() {
-        compositeDisposable.clear()
     }
 
 }

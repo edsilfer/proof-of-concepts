@@ -1,6 +1,8 @@
 package br.com.edsilfer.android_facebook_login.login.presentation.presenter
 
+import android.arch.lifecycle.Lifecycle
 import br.com.edsilfer.android_facebook_login.core.components.Router
+import br.com.edsilfer.tookit.core.components.BasePresenter
 import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
 import com.facebook.AccessToken
 import com.facebook.FacebookException
@@ -12,41 +14,50 @@ import timber.log.Timber
  */
 class LoginPresenterImpl(
         private val router: Router,
+        lifecycle: Lifecycle,
         private val loadingView: LoadingView
-) : LoginPresenter {
+) : BasePresenter(lifecycle), LoginPresenter {
 
-    override fun attach() {
+    override fun onStart() {
+        super.onStart()
         if (isUserLoggedIn()) {
-            Timber.i("LoginPresenterImpl attach")
-            router.launchHomepage()
-                    .doOnSubscribe { loadingView.show() }
-                    .subscribe({ loadingView.dismiss() }, { loadingView.dismiss() })
+            addDisposable(
+                    router.launchHomepage()
+                            .doOnSubscribe { loadingView.show() }
+                            .subscribe(
+                                    { loadingView.dismiss() },
+                                    { loadingView.dismiss() }
+                            )
+            )
 
         }
     }
 
     private fun isUserLoggedIn() = AccessToken.getCurrentAccessToken() != null
 
-    override fun detach() {}
-
     /**
-     * Called when Facebook launchHomepage finishes successfully
+     * Facebook login finished successfully
      */
     override fun onSuccess(result: LoginResult?) {
-        router.launchHomepage()
-                .doOnSubscribe { loadingView.show() }
-                .subscribe({ loadingView.dismiss() }, { loadingView.dismiss() })
+        addDisposable(
+                router.launchHomepage()
+                        .doOnSubscribe { loadingView.show() }
+                        .subscribe(
+                                { loadingView.dismiss() },
+                                { loadingView.dismiss() }
+                        )
+        )
     }
 
     /**
-     * Called when Facebook launchHomepage is cancelled
+     * Facebook login cancelled
      */
     override fun onCancel() {
         Timber.e("Facebook Login was cancelled")
     }
 
     /**
-     * Called when Facebook launchHomepage finds an error during its processing
+     * Facebook login finds an error
      */
     override fun onError(error: FacebookException?) {
         Timber.e("Login with Facebook failed: ${error?.message}")

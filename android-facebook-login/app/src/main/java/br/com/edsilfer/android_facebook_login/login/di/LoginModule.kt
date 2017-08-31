@@ -1,5 +1,6 @@
 package br.com.edsilfer.android_facebook_login.login.di
 
+import android.arch.lifecycle.Lifecycle
 import br.com.edsilfer.android_facebook_login.core.components.Router
 import br.com.edsilfer.android_facebook_login.core.components.RouterImpl
 import br.com.edsilfer.android_facebook_login.core.di.manager.ComponentManager
@@ -18,6 +19,9 @@ import dagger.Provides
  */
 @Module
 class LoginModule {
+
+    @Provides
+    fun providesLifecycle(loginViewImpl: LoginViewImpl): Lifecycle = loginViewImpl.lifecycle
 
     @Provides
     fun providesLoadingView(loginViewImpl: LoginViewImpl): LoadingView = loginViewImpl
@@ -40,9 +44,11 @@ class LoginModule {
     @Provides
     fun providesLoginPresenter(
             router: Router,
+            lifecycle: Lifecycle,
             loadingView: LoadingView
     ): LoginPresenter = LoginPresenterImpl(
             router,
+            lifecycle,
             loadingView
     )
 

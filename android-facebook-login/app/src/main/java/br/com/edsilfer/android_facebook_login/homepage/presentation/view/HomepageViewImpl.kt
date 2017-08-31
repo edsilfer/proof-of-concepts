@@ -1,6 +1,7 @@
 package br.com.edsilfer.android_facebook_login.homepage.presentation.view
 
 import android.animation.Animator
+import android.arch.lifecycle.LifecycleActivity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -12,8 +13,6 @@ import br.com.edsilfer.android_facebook_login.R
 import br.com.edsilfer.android_facebook_login.homepage.presentation.model.EducationViewModel
 import br.com.edsilfer.android_facebook_login.homepage.presentation.presenter.HomepagePresenter
 import br.com.edsilfer.reactive_facebook.domain.entity.User
-import br.com.edsilfer.tookit.core.components.BaseActivity
-import br.com.edsilfer.tookit.core.components.BasePresenter
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.homepage_cover_picture.*
@@ -25,7 +24,7 @@ import javax.inject.Inject
 /**
  * Created by edgar on 04/08/17.
  */
-class HomepageViewImpl : BaseActivity(), HomepageView {
+class HomepageViewImpl : LifecycleActivity(), HomepageView {
 
     companion object {
         private val ARG_LIGHT_ANIMATION_DURATION = 500L
@@ -39,8 +38,6 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
     lateinit var picasso: Picasso
     @Inject
     lateinit var presenter: HomepagePresenter
-
-    override fun getPresenter(): BasePresenter = presenter
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onCreate(savedInstanceState: Bundle?) {

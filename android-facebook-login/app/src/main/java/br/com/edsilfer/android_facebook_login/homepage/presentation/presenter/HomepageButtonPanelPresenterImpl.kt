@@ -13,13 +13,6 @@ class HomepageButtonPanelPresenterImpl(
         private val view: HomepageViewOptions
 ) : HomepageButtonPanelPresenter {
 
-    override fun attach() {
-
-    }
-
-    override fun detach() {
-    }
-
     override fun onActivityLogClick() {
 
     }
