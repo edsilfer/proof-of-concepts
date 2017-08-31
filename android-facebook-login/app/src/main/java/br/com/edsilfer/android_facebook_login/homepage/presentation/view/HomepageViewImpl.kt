@@ -40,12 +40,6 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
     @Inject
     lateinit var presenter: HomepagePresenter
 
-    private val cover by lazy { imageView_cover }
-    private val profile by lazy { imageView_profile }
-    private val username by lazy { textView_username }
-    private val education by lazy { listView_education }
-    private val light by lazy { view_light }
-
     override fun getPresenter(): BasePresenter = presenter
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
@@ -63,14 +57,15 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
     }
 
     private fun loadUser() {
-        picasso.load(user.coverPicture).centerCrop().fit().into(cover)
-        picasso.load(user.profilePicture).centerCrop().fit().into(profile)
-        username.text = user.name
-        education.adapter = EducationListAdapter(user.education.map { EducationViewModel(it.course, it.name) })
+        listView_education.isNestedScrollingEnabled = false
+        picasso.load(user.coverPicture).centerCrop().fit().into(imageView_cover)
+        picasso.load(user.profilePicture).centerCrop().fit().into(imageView_profile)
+        textView_username.text = user.name
+        listView_education.adapter = EducationListAdapter(user.education.map { EducationViewModel(it.course, it.name) })
     }
 
     override fun lightDown() {
-        light.animate()
+        view_light.animate()
                 .setDuration(ARG_LIGHT_ANIMATION_DURATION)
                 .setListener(
                         object : Animator.AnimatorListener {
@@ -78,7 +73,7 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
                             }
 
                             override fun onAnimationEnd(p0: Animator?) {
-                                light.visibility = LinearLayout.GONE
+                                view_light.visibility = LinearLayout.GONE
                             }
 
                             override fun onAnimationCancel(p0: Animator?) {
@@ -94,7 +89,7 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
     }
 
     override fun lightUp() {
-        light.animate()
+        view_light.animate()
                 .setDuration(ARG_LIGHT_ANIMATION_DURATION)
                 .setListener(
                         object : Animator.AnimatorListener {
@@ -108,8 +103,8 @@ class HomepageViewImpl : BaseActivity(), HomepageView {
                             }
 
                             override fun onAnimationStart(p0: Animator?) {
-                                light.alpha = 0f
-                                light.visibility = LinearLayout.VISIBLE
+                                view_light.alpha = 0f
+                                view_light.visibility = LinearLayout.VISIBLE
                             }
 
                         }

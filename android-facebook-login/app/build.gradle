@@ -45,6 +45,10 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, 'seconds')
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -71,14 +75,21 @@ dependencies {
 
     // OTHER
     implementation "com.jakewharton.timber:timber:$LIBRARY_VERSION_TIMBER"
-    implementation 'com.github.edsilfer:android-toolkit:master-SNAPSHOT'
-    implementation 'com.github.edsilfer:android-reactive-facebook:master-SNAPSHOT'
     implementation "com.google.code.gson:gson:$LIBRARY_VERSION_GSON"
     implementation "com.squareup.picasso:picasso:$LIBRARY_VERSION_PICASSO"
     implementation "com.mikhaellopez:circularimageview:$LIBRARY_VERSION_CIRCULAR_IMAGE_VIEW"
 
+    // LOCAL
+    implementation ('com.github.edsilfer:android-toolkit:master-SNAPSHOT') {
+        transitive = true
+    }
+    implementation ('com.github.edsilfer:android-reactive-facebook:master-SNAPSHOT') {
+        transitive true
+    }
+
     // FACEBOOK
     implementation("com.facebook.android:facebook-android-sdk:$LIBRARY_VERSION_FACEBOOK_SDK")
+
 
     // TEST DEPENDENCIES
     testImplementation 'junit:junit:4.12'

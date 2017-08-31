@@ -5,7 +5,7 @@
      - [Showcase](#showcase)
  * [Facebook Configuration](#fb-configuration)
  * [Android Configuration](#android-configuration)  
-      - [Login with Facebook Button](#login-fb-button)
+      - [Login with Facebook Button](#launchHomepage-fb-button)
       - [Check if user is already logged in](#check-logged)
       - [Graph API: Query user data](#fb-query-data)
  * [License](#license)
@@ -122,7 +122,7 @@ dependencies {
  - [Optional] Add Facebook Login button to your application:
 
  ```xml
-<com.facebook.login.widget.LoginButton
+<com.facebook.launchHomepage.widget.LoginButton
     android:id="@+id/login_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -131,7 +131,7 @@ dependencies {
     android:layout_marginBottom="30dp" />
  ```
 
-<a name="login-fb-button"></a>
+<a name="launchHomepage-fb-button"></a>
 
 ### Login with Facebook button
 In order to allow the Facebook button to work properly, not the following points:

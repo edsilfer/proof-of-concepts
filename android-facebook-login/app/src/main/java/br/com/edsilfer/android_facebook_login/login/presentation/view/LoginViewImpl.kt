@@ -11,12 +11,14 @@ import br.com.edsilfer.android_facebook_login.login.presentation.presenter.Login
 import br.com.edsilfer.reactive_facebook.data.datasource.rest.json.GraphAPISchema
 import br.com.edsilfer.tookit.core.components.BaseActivity
 import br.com.edsilfer.tookit.core.components.BasePresenter
+import br.com.edsilfer.tookit.presentation.view.contract.LoadingScreen
+import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
 import com.facebook.CallbackManager
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.login_view.*
 import javax.inject.Inject
 
-class LoginViewImpl : BaseActivity(), LoginView {
+class LoginViewImpl : BaseActivity(), LoadingView {
 
     companion object {
         fun getIntent(context: Context): Intent = Intent(context, LoginViewImpl::class.java)
@@ -24,6 +26,8 @@ class LoginViewImpl : BaseActivity(), LoginView {
 
     @Inject
     lateinit var presenter: LoginPresenter
+    @Inject
+    lateinit var loadingScreen: LoadingScreen
     @Inject
     lateinit var callbackManager: CallbackManager
 
@@ -34,7 +38,10 @@ class LoginViewImpl : BaseActivity(), LoginView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login_view)
         setSupportActionBar(findViewById<Toolbar>(R.id.toolbar))
+        prepareFacebookConfiguration()
+    }
 
+    private fun prepareFacebookConfiguration() {
         button_facebookLogin.setReadPermissions(GraphAPISchema.ARG_USER_PERMISSIONS)
         button_facebookLogin.registerCallback(callbackManager, presenter)
     }
@@ -55,4 +62,8 @@ class LoginViewImpl : BaseActivity(), LoginView {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun show() = loadingScreen.show()
+
+    override fun dismiss() = loadingScreen.dismiss()
 }

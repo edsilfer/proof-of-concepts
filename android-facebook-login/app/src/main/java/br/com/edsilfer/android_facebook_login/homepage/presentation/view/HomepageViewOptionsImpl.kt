@@ -6,8 +6,9 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import br.com.edsilfer.android_facebook_login.R
-import br.com.edsilfer.android_facebook_login.homepage.di.DaggerHomepageButtonPanelComponent
-import br.com.edsilfer.android_facebook_login.homepage.di.HomepageButtonPanelModule
+import br.com.edsilfer.android_facebook_login.core.App
+import br.com.edsilfer.android_facebook_login.homepage.di.DaggerHomepageViewOptionsComponent
+import br.com.edsilfer.android_facebook_login.homepage.di.HomepageViewOptionsModule
 import br.com.edsilfer.android_facebook_login.homepage.domain.observables.PopupObservable
 import br.com.edsilfer.android_facebook_login.homepage.presentation.presenter.HomepageButtonPanelPresenter
 import kotlinx.android.synthetic.main.homepage_button_panel.view.*
@@ -17,18 +18,14 @@ import javax.inject.Inject
 /**
  * Created by edgar on 06/08/17.
  */
-class HomepageButtonPanelViewImpl @JvmOverloads constructor(
+class HomepageViewOptionsImpl @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr), HomepageButtonPanelView {
+) : LinearLayout(context, attrs, defStyleAttr), HomepageViewOptions {
 
     @Inject
     lateinit var presenter: HomepageButtonPanelPresenter
-
-    private val more by lazy { linearLayout_moreContainer }
-    private val updateInfos by lazy { linearLayout_updateInfosContainer }
-    private val activityLog by lazy { linearLayout_activityLogContainer }
 
     init {
         View.inflate(context, R.layout.homepage_button_panel, this)
@@ -37,20 +34,21 @@ class HomepageButtonPanelViewImpl @JvmOverloads constructor(
     }
 
     private fun injectDependencies() {
-        DaggerHomepageButtonPanelComponent
+        DaggerHomepageViewOptionsComponent
                 .builder()
-                .homepageButtonPanelModule(HomepageButtonPanelModule(this))
+                .appComponent((context.applicationContext as App).appComponent)
+                .homepageViewOptionsModule(HomepageViewOptionsModule(this))
                 .build()
                 .inject(this)
     }
 
     private fun addButtonsClickListeners() {
-        more.setOnClickListener { showPopup(it) }
-        updateInfos.setOnClickListener { presenter.onUpdateInfosClick() }
-        activityLog.setOnClickListener { presenter.onActivityLogClick() }
+        linearLayout_moreContainer.setOnClickListener { showPopup(it) }
+        linearLayout_updateInfosContainer.setOnClickListener { presenter.onUpdateInfosClick() }
+        linearLayout_activityLogContainer.setOnClickListener { presenter.onActivityLogClick() }
     }
 
-    fun showPopup(view: View) {
+    private fun showPopup(view: View) {
         PopupObservable.publish(true)
         val popup = PopupMenu(context, view)
         popup.setOnDismissListener { PopupObservable.publish(false) }

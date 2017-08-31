@@ -1,9 +1,13 @@
 package br.com.edsilfer.android_facebook_login.core.di.app
 
 import br.com.edsilfer.android_facebook_login.core.App
-import br.com.edsilfer.android_facebook_login.core.di.acttivity.ActivityBinding
-import br.com.edsilfer.android_facebook_login.core.di.session.SessionComponent
 import br.com.edsilfer.android_facebook_login.core.di.FacebookModule
+import br.com.edsilfer.android_facebook_login.core.di.acttivity.ActivityBinding
+import br.com.edsilfer.android_facebook_login.core.di.manager.ComponentManager
+import br.com.edsilfer.android_facebook_login.core.di.manager.ComponentManagerModule
+import br.com.edsilfer.android_facebook_login.core.di.session.SessionComponent
+import br.com.edsilfer.reactive_facebook.domain.FacebookAPIManager
+import br.com.edsilfer.reactive_facebook.domain.FacebookRepository
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -17,10 +21,11 @@ import javax.inject.Singleton
 @Singleton
 @Component(
         modules = arrayOf(
-                AppModule::class,
                 FacebookModule::class,
+                AppModule::class,
                 ActivityBinding::class,
-                AndroidInjectionModule::class
+                AndroidInjectionModule::class,
+                ComponentManagerModule::class
         )
 )
 interface AppComponent : AndroidInjector<App> {
@@ -36,5 +41,14 @@ interface AppComponent : AndroidInjector<App> {
     fun sessionSubComponent(): SessionComponent.Builder
 
     override fun inject(app: App)
+
+    /*
+     Necessary for submodules
+    */
+    fun providesFacebookRepository(): FacebookRepository
+
+    fun providesFacebookAPIManager(): FacebookAPIManager
+
+    fun providesComponentManager(): ComponentManager
 
 }

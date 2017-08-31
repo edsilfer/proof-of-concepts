@@ -2,12 +2,14 @@ package br.com.edsilfer.android_facebook_login.login.di
 
 import br.com.edsilfer.android_facebook_login.core.components.Router
 import br.com.edsilfer.android_facebook_login.core.components.RouterImpl
+import br.com.edsilfer.android_facebook_login.core.di.manager.ComponentManager
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenter
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenterImpl
-import br.com.edsilfer.android_facebook_login.login.presentation.view.LoginView
 import br.com.edsilfer.android_facebook_login.login.presentation.view.LoginViewImpl
 import br.com.edsilfer.reactive_facebook.domain.FacebookAPIManager
-import br.com.edsilfer.reactive_facebook.domain.FacebookRepository
+import br.com.edsilfer.tookit.presentation.view.LoadingScreenImpl
+import br.com.edsilfer.tookit.presentation.view.contract.LoadingScreen
+import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
 import dagger.Module
 import dagger.Provides
 
@@ -18,23 +20,30 @@ import dagger.Provides
 class LoginModule {
 
     @Provides
-    fun providesLoginView(loginViewImpl: LoginViewImpl): LoginView = loginViewImpl
+    fun providesLoadingView(loginViewImpl: LoginViewImpl): LoadingView = loginViewImpl
+
+    @Provides
+    fun providesLoadingScreen(loginViewImpl: LoginViewImpl): LoadingScreen =
+            LoadingScreenImpl(loginViewImpl.supportFragmentManager)
 
     @Provides
     fun providesRouter(
-            facebookAPIManager: FacebookAPIManager,
-            facebookRepository: FacebookRepository,
-            loginViewImpl: LoginViewImpl
+            loginViewImpl: LoginViewImpl,
+            componentManager2: ComponentManager,
+            facebookAPIManager: FacebookAPIManager
     ): Router = RouterImpl(
             loginViewImpl,
             facebookAPIManager,
-            facebookRepository
+            componentManager2
     )
 
     @Provides
     fun providesLoginPresenter(
-            loginView: LoginView,
-            router: Router
-    ): LoginPresenter = LoginPresenterImpl(loginView, router)
+            router: Router,
+            loadingView: LoadingView
+    ): LoginPresenter = LoginPresenterImpl(
+            router,
+            loadingView
+    )
 
 }
