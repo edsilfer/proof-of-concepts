@@ -23,11 +23,11 @@
 ### Basic concepts
 > Build automation is the process of automating the creation of a software build and the associated processes including: compiling computer source code into binary code, packaging binary code, and running automated tests.
 
-_ https://en.wikipedia.org/wiki/Build_automation _
+_https://en.wikipedia.org/wiki/Build_automation_
 
 > [Gradle](https://docs.gradle.org/current/userguide/userguide.html) is an open source build automation system that builds upon the concepts of Apache Ant and Apache Maven and introduces a Groovy-based domain-specific language (DSL) instead of the XML form used by Apache Maven for declaring the project configuration.
 
-_ https://en.wikipedia.org/wiki/Gradle _
+_https://en.wikipedia.org/wiki/Gradle_
 
 _Before proceeding any further, read the [Glossary](#glossary) section._
 
@@ -86,15 +86,24 @@ In order to test the code, the best approach is to use [Spock Framework](http://
 
 > Spock is a testing and specification framework for Java and Groovy applications. What makes it stand out from the crowd is its beautiful and highly expressive specification language. Thanks to its JUnit runner, Spock is compatible with most IDEs, build tools, and continuous integration servers. Spock is inspired from JUnit, jMock, RSpec, Groovy, Scala, Vulcans, and other fascinating life forms.
 
-Test details can be found in the sample project.
+Understanding Spock is out of scope for this project. As far as Custom Gradle Plugin peculiarities are involved, what needs to be understood is the use of ```gradleTestKit()```, which allows testing build scripts, retrieving their result for later assertion:
+
+```Groovy
+GradleRunner.create()
+    .withProjectDir(getTestProjectDirectory())
+    .withArguments(ARG_TASK)
+    .build()
+```
+
+Further details on testing tasks and the plugin can be found on the sample project.
 
 <a name="project-extensions"></a>
 
 ### Project extensions
 Data can be gathered from build script through the use of project extensions:
-    - create a POJO class where data from build script will be mapped into;
-    - inside plugin class, add the line: ```project.extensions.create("obj_name", POJOClass)```;
-    - inside build scrip (```build.gradle```file), assign the values like: ```obj_name.field1 = 'sample value'```, another option would be the following sintaxe:
+ - create a POJO class where data from build script will be mapped into;
+ - inside plugin class, add the line: ```project.extensions.create("obj_name", POJOClass)```;
+ - inside build scrip (```build.gradle```file), assign the values like: ```obj_name.field1 = 'sample value'```, another option would be the following sintaxe:
 
 ```Groovy
 obj_name {

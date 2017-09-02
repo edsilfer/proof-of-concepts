@@ -8,6 +8,7 @@ import org.gradle.api.tasks.TaskAction
  */
 class CleanBuildDirectory extends DefaultTask {
 
+    static String INFO_COMMAND = "clean"
     static String INFO_DESCRIPTION = "Deletes build directory and its contents"
 
     @TaskAction

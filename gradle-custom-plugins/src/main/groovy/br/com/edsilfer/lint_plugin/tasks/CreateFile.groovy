@@ -8,8 +8,10 @@ import org.gradle.api.tasks.TaskAction
  */
 class CreateFile extends DefaultTask {
 
-    private static final String ARG_SAMPLE_FILE_NAME = "sample.txt"
+    static String INFO_COMMAND = "createFile"
     static String INFO_DESCRIPTION = "Creates a sample file with extension .txt inside build directory"
+
+    private static final String ARG_SAMPLE_FILE_NAME = "sample.txt"
 
     @TaskAction
     def action() {

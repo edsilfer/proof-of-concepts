@@ -10,8 +10,16 @@ import spock.lang.Specification
 class LintPluginTest extends Specification {
 
     private Project project = ProjectBuilder.builder()
-            .withName("test-plugin")
+            .withName("test-lint-plugin")
             .build()
+
+    def "assert that LintPlugin has installCustomLintRules task"() {
+        when:
+        project.pluginManager.apply LintPlugin
+
+        then:
+        project.tasks.installCustomLintRules.enabled
+    }
 
     def "assert that LintPlugin has clean task"() {
         when:
