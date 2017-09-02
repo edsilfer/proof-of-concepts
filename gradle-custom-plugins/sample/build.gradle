@@ -1,0 +1,10 @@
+apply plugin: "lintplugin"
+
+buildscript {
+    repositories {
+        mavenLocal()
+    }
+    dependencies {
+        classpath "br.com.edsilfer:lint-plugin:1.+"
+    }
+}

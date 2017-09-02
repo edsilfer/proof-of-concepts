@@ -1,0 +1,6 @@
+/Users/edgar/Edgar/Workspace/prove-of-concepts/gradle-custom-plugins/build/classes/java/main
+/Users/edgar/Edgar/Workspace/prove-of-concepts/gradle-custom-plugins/build/classes/groovy/main
+/Users/edgar/Edgar/Workspace/prove-of-concepts/gradle-custom-plugins/build/resources/main
+/Users/edgar/.gradle/caches/4.0/generated-gradle-jars/gradle-api-4.0.jar
+/usr/local/Cellar/gradle/4.0/libexec/lib/groovy-all-2.4.11.jar
+/usr/local/Cellar/gradle/4.0/libexec/lib/gradle-installation-beacon-4.0.jar
