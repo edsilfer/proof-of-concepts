@@ -1,4 +1,4 @@
-package br.com.edsilfer.lint_plugin.tasks
+package com.github.edsilfer.lint_plugin.tasks
 
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.TaskAction

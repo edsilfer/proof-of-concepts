@@ -6,6 +6,6 @@ buildscript {
     }
 
     dependencies {
-        classpath "br.com.edsilfer:lint-plugin:+"
+        classpath "com.github.edsilfer:lint-plugin:+"
     }
 }

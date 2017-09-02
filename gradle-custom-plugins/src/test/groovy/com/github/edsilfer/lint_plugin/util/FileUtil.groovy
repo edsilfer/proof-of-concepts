@@ -1,4 +1,4 @@
-package br.com.edsilfer.lint_plugin.util
+package com.github.edsilfer.lint_plugin.util
 
 /**
  * Created by edgar on 01/09/17.

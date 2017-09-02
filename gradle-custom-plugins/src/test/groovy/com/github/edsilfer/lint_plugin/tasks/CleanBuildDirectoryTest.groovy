@@ -1,9 +1,9 @@
-package br.com.edsilfer.lint_plugin.tasks
+package com.github.edsilfer.lint_plugin.tasks
 
 import org.gradle.testkit.runner.GradleRunner
 import spock.lang.Specification
 
-import static br.com.edsilfer.lint_plugin.util.FileUtil.*
+import static com.github.edsilfer.lint_plugin.util.FileUtil.*
 import static org.gradle.testkit.runner.TaskOutcome.SUCCESS
 
 /**

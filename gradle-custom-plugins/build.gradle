@@ -1,8 +1,8 @@
-group = 'br.com.edsilfer'
-version = '1.0.0-SNAPSHOT'
-
 apply plugin: 'groovy'
 apply plugin: 'maven'
+
+group = 'com.github.edsilfer'
+version = '1.0.0'
 
 ext {
     test_version_junit = '4.12'
