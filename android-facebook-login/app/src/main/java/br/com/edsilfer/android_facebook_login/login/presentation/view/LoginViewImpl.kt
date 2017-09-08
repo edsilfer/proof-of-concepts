@@ -9,14 +9,12 @@ import android.view.MenuItem
 import br.com.edsilfer.android_facebook_login.R
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenter
 import br.com.edsilfer.reactive_facebook.data.datasource.rest.json.GraphAPISchema
-import br.com.edsilfer.tookit.presentation.view.contract.LoadingScreen
-import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
 import com.facebook.CallbackManager
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.login_view.*
 import javax.inject.Inject
 
-class LoginViewImpl : LifecycleActivity(), LoadingView {
+class LoginViewImpl : LifecycleActivity() {
 
     companion object {
         fun getIntent(context: Context): Intent = Intent(context, LoginViewImpl::class.java)
@@ -24,8 +22,6 @@ class LoginViewImpl : LifecycleActivity(), LoadingView {
 
     @Inject
     lateinit var presenter: LoginPresenter
-    @Inject
-    lateinit var loadingScreen: LoadingScreen
     @Inject
     lateinit var callbackManager: CallbackManager
 
@@ -57,8 +53,4 @@ class LoginViewImpl : LifecycleActivity(), LoadingView {
             else -> super.onOptionsItemSelected(item)
         }
     }
-
-    override fun show() = loadingScreen.show()
-
-    override fun dismiss() = loadingScreen.dismiss()
 }

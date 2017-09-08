@@ -8,9 +8,9 @@ import br.com.edsilfer.android_facebook_login.login.presentation.presenter.Login
 import br.com.edsilfer.android_facebook_login.login.presentation.presenter.LoginPresenterImpl
 import br.com.edsilfer.android_facebook_login.login.presentation.view.LoginViewImpl
 import br.com.edsilfer.reactive_facebook.domain.FacebookAPIManager
-import br.com.edsilfer.tookit.presentation.view.LoadingScreenImpl
-import br.com.edsilfer.tookit.presentation.view.contract.LoadingScreen
-import br.com.edsilfer.tookit.presentation.view.contract.LoadingView
+import br.com.edsilfer.toolkit.core.components.SchedulersCoupler
+import br.com.edsilfer.toolkit.core.components.SchedulersCouplerImpl
+import br.com.edsilfer.toolkit.presentation.view.LoadingView
 import dagger.Module
 import dagger.Provides
 
@@ -21,14 +21,13 @@ import dagger.Provides
 class LoginModule {
 
     @Provides
+    fun providesSchedulersCoupler () : SchedulersCoupler = SchedulersCouplerImpl()
+
+    @Provides
     fun providesLifecycle(loginViewImpl: LoginViewImpl): Lifecycle = loginViewImpl.lifecycle
 
     @Provides
-    fun providesLoadingView(loginViewImpl: LoginViewImpl): LoadingView = loginViewImpl
-
-    @Provides
-    fun providesLoadingScreen(loginViewImpl: LoginViewImpl): LoadingScreen =
-            LoadingScreenImpl(loginViewImpl.supportFragmentManager)
+    fun providesLoadingView(loginViewImpl: LoginViewImpl): LoadingView = LoadingView(loginViewImpl.supportFragmentManager)
 
     @Provides
     fun providesRouter(
@@ -45,11 +44,13 @@ class LoginModule {
     fun providesLoginPresenter(
             router: Router,
             lifecycle: Lifecycle,
-            loadingView: LoadingView
+            loadingView: LoadingView,
+            schedulersCoupler: SchedulersCoupler
     ): LoginPresenter = LoginPresenterImpl(
             router,
             lifecycle,
-            loadingView
+            loadingView,
+            schedulersCoupler
     )
 
 }

@@ -15,6 +15,7 @@ import br.com.edsilfer.android_facebook_login.homepage.presentation.presenter.Ho
 import br.com.edsilfer.reactive_facebook.domain.entity.User
 import com.squareup.picasso.Picasso
 import dagger.android.AndroidInjection
+import io.reactivex.ObservableTransformer
 import kotlinx.android.synthetic.main.homepage_cover_picture.*
 import kotlinx.android.synthetic.main.homepage_profile_picture.*
 import kotlinx.android.synthetic.main.homepage_view.*
@@ -61,7 +62,7 @@ class HomepageViewImpl : LifecycleActivity(), HomepageView {
         listView_education.adapter = EducationListAdapter(user.education.map { EducationViewModel(it.course, it.name) })
     }
 
-    override fun lightDown() {
+    private fun turnLightOff() {
         view_light.animate()
                 .setDuration(ARG_LIGHT_ANIMATION_DURATION)
                 .setListener(
@@ -85,7 +86,7 @@ class HomepageViewImpl : LifecycleActivity(), HomepageView {
                 .start()
     }
 
-    override fun lightUp() {
+    private fun turnLightOn() {
         view_light.animate()
                 .setDuration(ARG_LIGHT_ANIMATION_DURATION)
                 .setListener(
@@ -108,6 +109,20 @@ class HomepageViewImpl : LifecycleActivity(), HomepageView {
                 )
                 .alpha(1f)
                 .start()
+    }
+
+    override fun <T> onPopupStateChange(): ObservableTransformer<T, T> {
+        return ObservableTransformer {
+            upstream ->
+            upstream.doOnNext {
+                isPopupVisible ->
+                if (isPopupVisible is Boolean && isPopupVisible) {
+                    turnLightOn()
+                } else {
+                    turnLightOff()
+                }
+            }
+        }
     }
 
 }
