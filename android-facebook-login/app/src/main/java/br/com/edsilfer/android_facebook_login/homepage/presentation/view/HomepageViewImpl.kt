@@ -60,6 +60,7 @@ class HomepageViewImpl : LifecycleActivity(), HomepageView {
         picasso.load(user.profilePicture).centerCrop().fit().into(imageView_profile)
         textView_username.text = user.name
         listView_education.adapter = EducationListAdapter(user.education.map { EducationViewModel(it.course, it.name) })
+        listView_education.isFocusable = false
     }
 
     private fun turnLightOff() {

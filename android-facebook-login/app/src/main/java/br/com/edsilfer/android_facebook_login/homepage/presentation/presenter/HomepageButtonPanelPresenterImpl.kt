@@ -12,14 +12,9 @@ class HomepageButtonPanelPresenterImpl(
         private val router: Router,
         private val view: HomepageViewOptions
 ) : HomepageButtonPanelPresenter {
+    override fun onActivityLogClick() {}
 
-    override fun onActivityLogClick() {
-
-    }
-
-    override fun onUpdateInfosClick() {
-
-    }
+    override fun onUpdateInfosClick() {}
 
     override fun onPopupItemClick(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -30,5 +25,4 @@ class HomepageButtonPanelPresenterImpl(
         }
         return false
     }
-
 }

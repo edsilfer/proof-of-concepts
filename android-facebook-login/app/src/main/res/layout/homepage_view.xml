@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/white">
-
+    android:background="@android:color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -18,28 +19,32 @@
             android:id="@+id/relativeLayout_coverContainer"
             layout="@layout/homepage_cover_picture"
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:layout_margin="0dp"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/cardView_profileContainer"
             layout="@layout/homepage_profile_picture"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="160dp"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/relativeLayout_coverContainer"
-            app:layout_constraintVertical_bias="0.205" />
+            app:layout_constraintTop_toTopOf="@+id/relativeLayout_coverContainer" />
 
         <TextView
             android:id="@+id/textView_username"
             android:layout_width="232dp"
             android:layout_height="87dp"
             android:layout_marginTop="8dp"
+            android:focusable="false"
             android:fontFamily="sans-serif-thin"
             android:textAlignment="center"
             android:textSize="32sp"
@@ -55,6 +60,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:focusable="false"
             android:fontFamily="sans-serif-thin"
             android:text="@string/str_homepage_pending_posts_disclaimer"
             android:textColor="@android:color/holo_blue_dark"
@@ -69,6 +75,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_pendingPosts" />
@@ -80,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/homepageButtonPanel" />
@@ -94,10 +101,17 @@
             android:layout_marginTop="8dp"
             android:divider="@null"
             android:dividerHeight="0dp"
+            android:focusable="false"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_addBio" />
+
+        <View
+            android:id="@+id/footer"
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/listView_education" />
 
         <LinearLayout
             android:id="@+id/view_light"
@@ -110,5 +124,4 @@
             android:orientation="vertical"
             android:visibility="gone" />
     </android.support.constraint.ConstraintLayout>
-
 </ScrollView>

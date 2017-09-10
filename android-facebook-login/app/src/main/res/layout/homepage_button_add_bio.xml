@@ -19,8 +19,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
         android:layout_marginStart="4dp"
+        android:textStyle="bold"
         android:fontFamily="sans-serif-thin"
         android:text="@string/str_button_add_bio"
-        android:textColor="#4B6CA8"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="12sp" />
 </LinearLayout>
