@@ -6,12 +6,15 @@ https://en.wikipedia.org/wiki/Proof_of_concept
 
 # Index
 1. **Android**
-    * [Sample Android application built with Buck;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-buck-sample)
-    * [Sample Android project with Custom Lint rules;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-custom-lint)
-    * [Sample Android project that uses Dagger 2, Kotlin and Android Injector](https://github.com/edsilfer/proof-of-concepts/tree/master/android-dagger2)
-    * [Sample Android application that logs with Facebook API;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-facebook-login)
-    * [Sample Android project that uses Map Struct Library for building mappers between POJOs;](https://github.com/edsilfer/prove-of-concepts/tree/master/android-lib-map-struct);
+  * [Sample Android application built with Buck;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-buck-sample)
+  * [Sample Android project with Custom Lint rules;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-custom-lint)
+  * [Sample Android project that uses Dagger 2, Kotlin and Android Injector](https://github.com/edsilfer/proof-of-concepts/tree/master/android-dagger2)
+  * [Sample Android application that logs with Facebook API;](https://github.com/edsilfer/proof-of-concepts/tree/master/android-facebook-login)
+  * [Sample Android project that uses Map Struct Library for building mappers between POJOs;](https://github.com/edsilfer/prove-of-concepts/tree/master/android-lib-map-struct);
 
 
 2. **WEB**
-    * [Spring Boot App with Kotlin](https://github.com/edsilfer/prove-of-concepts/tree/master/kotlin-spring-boot);
+  * [Spring Boot App with Kotlin](https://github.com/edsilfer/prove-of-concepts/tree/master/kotlin-spring-boot);
+
+3. **Other**
+  * [Custom plugin study for IntelliJ IDEA;](https://github.com/edsilfer/prove-of-concepts/tree/master/intellij-custom-plugin)
